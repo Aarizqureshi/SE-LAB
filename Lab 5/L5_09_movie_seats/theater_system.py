@@ -2,7 +2,7 @@
 
 import hashlib
 import json
-import os
+
 
 shows = {
     "SHOW-1": {"title": "Interstellar", "seats": 20, "booked": []},
@@ -64,8 +64,9 @@ def release_seat(show_id, seat_number):
 
 def ticket_code(show_id, seat_number):
     """Generate a short ticket code."""
-    ticket_data = f"{show_id}{seat_number}"
-    return hashlib.md5(ticket_data.encode()).hexdigest()[:8]
+    return hashlib.sha256(
+        f"{show_id}{seat_number}".encode("utf-8")
+    ).hexdigest()[:8]
 
 
 def dump_reservations(file="seats.json"):
@@ -125,7 +126,7 @@ def main():
     load_reservations()
     print_seating_summary()
 
-    os.chmod("seats.json", 0o777)
+    
 
 
 if __name__ == "__main__":
