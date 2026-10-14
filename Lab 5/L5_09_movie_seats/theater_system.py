@@ -1,4 +1,4 @@
-"""Manage movie theater seat reservations and ticket codes."""
+﻿"""Manage movie theater seat reservations and ticket codes."""
 
 import hashlib
 import json
@@ -125,8 +125,6 @@ def main():
     dump_reservations()
     load_reservations()
     print_seating_summary()
-
-    
 
 
 if __name__ == "__main__":
